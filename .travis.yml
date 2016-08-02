@@ -4,6 +4,6 @@ node_js:
   - "6.1"
   - "4.4.7"
 before_script:
-  - npm i --save vorpal
+  - npm i 
 script:
     -node index.js
