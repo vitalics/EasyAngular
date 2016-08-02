@@ -1,0 +1,29 @@
+{
+  "name": "easyangular",
+  "version": "1.0.0",
+  "description": "[![Build Status] (https://travis-ci.org/vitalics/EasyAngular.svg?branch=master)](https://travis-ci.org/vitalics/EasyAngular)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "easyangular": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalics/EasyAngular.git"
+  },
+  "keywords": [
+    "node",
+    "cli"
+  ],
+  "author": "Vitali Haradkou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalics/EasyAngular/issues"
+  },
+  "homepage": "https://github.com/vitalics/EasyAngular#readme",
+  "dependencies": {
+    "vorpal": "^1.11.2"
+  }
+}
