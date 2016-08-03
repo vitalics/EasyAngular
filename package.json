@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "preferGlobal": true,
   "bin": {
-    "easyangular": "index.js"
+    "e-angular": "./index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,9 @@
   },
   "homepage": "https://github.com/vitalics/EasyAngular#readme",
   "dependencies": {
-    "vorpal": "^1.11.2"
+    "co": "^4.6.0",
+    "co-prompt": "^1.0.0",
+    "commander": "^2.9.0",
+    "progress": "^1.1.8"
   }
 }

@@ -1,52 +1,25 @@
-var vorpal = require('vorpal')();
+#!/usr/bin/env node --harmony
+let co = require('co');
+let prompt = require('co-prompt');
+let program = require('commander');
 
-var vorpal = require('vorpal')(),
-    duckCount = 0,
-    wabbitCount = 0;
+Program();
 
-// duck
-vorpal
-      .command('duck', 'Outputs "rabbit"')
-      .action(function(args, callback) {
-        this.log('Wabbit');
-        callback();
+function Program() {
+  program
+    .arguments('<command>')
+    .option('-n, --name <directory name>', 'Create forlder <directory name>')
+    .option('-f, --framework <framework name>', 'initialize with framework(default: bootstrap)')
+    .action(function (command) {
+      co(function* () {
+        let name = yield prompt('name: ');
+        let framework = yield prompt.password('framework: ');
+        console.log('name: %s framework: %s file: %s',
+          name, framework, command);
+        console.log(process.argv[1]);
+        console.log(`Current directory: ${process.cwd()}`);
       });
-vorpal
-  .command('duck season', 'Outputs "rabbit season"')
-  .action(function(args, callback) {
-    duckCount++;
-    this.log('Wabbit season');
-    callback();
-  });
+    })
+    .parse(process.argv);
+}
 
-// wabbit
-vorpal
-    .command('wabbit', 'Outputs "duck"')
-    .action(function(args, callback) {
-      this.log('Duck');
-      callback();
-    });
-vorpal
-    .command('wabbit season', 'Outputs "duck season"')
-    .action(function(args, callback) {
-      // no cheating
-      if (duckCount < 2) {
-        duckCount = 0;
-        this.log('You\'re despicable');
-        callback();
-      }
-      else if (wabbitCount === 0) {
-        wabbitCount++;
-        this.log('Duck season');
-        callback();
-      }
-      // doh!
-      else {
-        this.log('I say it\'s duck season. And I say fire!');
-        vorpal.ui.cancel();
-      }
-    });
-
-vorpal
-  .delimiter('e-angular$')
-  .show();
