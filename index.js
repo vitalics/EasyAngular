@@ -1,25 +1,28 @@
 #!/usr/bin/env node --harmony
+
 let co = require('co');
 let prompt = require('co-prompt');
 let program = require('commander');
+let creator = require('./creator.js');
 
-Program();
+let currentDir = process.cwd();
 
-function Program() {
-  program
-    .arguments('<command>')
-    .option('-n, --name <directory name>', 'Create forlder <directory name>')
-    .option('-f, --framework <framework name>', 'initialize with framework(default: bootstrap)')
-    .action(function (command) {
-      co(function* () {
-        let name = yield prompt('name: ');
-        let framework = yield prompt.password('framework: ');
-        console.log('name: %s framework: %s file: %s',
-          name, framework, command);
-        console.log(process.argv[1]);
-        console.log(`Current directory: ${process.cwd()}`);
-      });
-    })
-    .parse(process.argv);
-}
 
+program
+  .version('0.0.1')
+
+program
+  .option('-i, --init', 'initialize the project')
+  .command('init')
+  .description('initialize project configuration')
+  .action(function () {
+    co(function* () {
+      let projName = yield prompt('project name: ');
+      let dir = currentDir +"\\"+ projName;
+      console.log(`You create project with projName: '${currentDir + "\\" + projName}'`);
+      creator.CreateFolder(dir);
+      //TODO: Create Project with Dependencies
+    });
+  });
+
+program.parse(process.argv);
